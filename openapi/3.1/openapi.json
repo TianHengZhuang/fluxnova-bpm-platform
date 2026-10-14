@@ -71,6 +71,9 @@
       "name": "Condition"
     },
     {
+      "name": "Configuration"
+    },
+    {
       "name": "Decision Definition"
     },
     {
@@ -2435,6 +2438,101 @@
               }
             },
             "description": "If the user is not allowed to start the process instance of the process definition, which start condition was evaluated to `true`."
+          }
+        }
+      }
+    },
+    "/configurations": {
+      "post": {
+        "operationId": "createConfiguration",
+        "tags": [
+          "Configuration"
+        ],
+        "summary": "Create Configuration",
+        "description": "Creates a new process configuration entry.\n\nIf `tenantId` is omitted or blank, the entry is created as a global configuration.\nA duplicate active `(configKey, tenantId)` scope returns `409 Conflict`.",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateConfigurationDto"
+              },
+              "examples": {
+                "example-1": {
+                  "summary": "POST `/configurations`",
+                  "value": {
+                    "configKey": "mail.from",
+                    "configValue": "noreply@example.org",
+                    "tenantId": "tenant-a"
+                  }
+                },
+                "example-2": {
+                  "summary": "POST `/configurations` (global)",
+                  "value": {
+                    "configKey": "mail.from",
+                    "configValue": "noreply-global@example.org"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ConfigurationDto"
+                },
+                "examples": {
+                  "example-1": {
+                    "summary": "Status 201.",
+                    "value": {
+                      "id": "8a6cf4aa-6db5-4b95-9871-1f0f9ef8b2f5",
+                      "configKey": "mail.from",
+                      "tenantId": "tenant-a",
+                      "configValue": "noreply@example.org",
+                      "version": 1,
+                      "status": "ACTIVE",
+                      "createdBy": "demo",
+                      "createdAt": "2026-08-20T14:00:00.000+0000",
+                      "updatedBy": "demo",
+                      "updatedAt": "2026-08-20T14:00:00.000+0000"
+                    }
+                  }
+                }
+              }
+            },
+            "description": "Request successful."
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            },
+            "description": "Returned if `configKey` or `configValue` is missing or blank."
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            },
+            "description": "Returned if an active configuration with the same `(configKey, tenantId)` already exists."
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExceptionDto"
+                }
+              }
+            },
+            "description": "The configuration could not be created due to an internal server error."
           }
         }
       }
@@ -45477,6 +45575,67 @@
           }
         }
       },
+      "ConfigurationDto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true,
+            "description": "The unique id of the configuration entry."
+          },
+          "configKey": {
+            "type": "string",
+            "nullable": true,
+            "description": "The configuration key."
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true,
+            "description": "The tenant scope of the configuration. `null` means global scope."
+          },
+          "configValue": {
+            "type": "string",
+            "nullable": true,
+            "description": "The configuration value."
+          },
+          "version": {
+            "type": "integer",
+            "format": "int32",
+            "description": "The optimistic lock version of the configuration entry."
+          },
+          "status": {
+            "type": "string",
+            "nullable": true,
+            "enum": [
+              "ACTIVE",
+              "DELETED"
+            ],
+            "description": "The status of the configuration entry."
+          },
+          "createdBy": {
+            "type": "string",
+            "nullable": true,
+            "description": "The user that created the configuration entry."
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "The timestamp when the configuration entry was created."
+          },
+          "updatedBy": {
+            "type": "string",
+            "nullable": true,
+            "description": "The user that last updated the configuration entry."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true,
+            "description": "The timestamp when the configuration entry was last updated."
+          }
+        }
+      },
       "CorrelationMessageAsyncDto": {
         "type": "object",
         "properties": {
@@ -45618,6 +45777,28 @@
               "$ref": "#/components/schemas/CommentDto"
             },
             "description": ""
+          }
+        }
+      },
+      "CreateConfigurationDto": {
+        "type": "object",
+        "required": [
+          "configKey",
+          "configValue"
+        ],
+        "properties": {
+          "configKey": {
+            "type": "string",
+            "description": "The configuration key."
+          },
+          "configValue": {
+            "type": "string",
+            "description": "The configuration value."
+          },
+          "tenantId": {
+            "type": "string",
+            "nullable": true,
+            "description": "Optional tenant scope. If omitted or blank, the configuration is created as global."
           }
         }
       },

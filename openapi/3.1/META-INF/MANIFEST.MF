@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Archiver-Version: Plexus Archiver
-Created-By: Apache Maven 3.9.16
+Created-By: Apache Maven 3.10.0
 Built-By: runner
 Build-Jdk: 21.0.12.1
 Implementation-Title: Fluxnova Platform - engine - REST - OpenAPI
