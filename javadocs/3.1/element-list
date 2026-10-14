@@ -116,6 +116,7 @@ org.finos.fluxnova.bpm.engine.cdi.impl.el
 org.finos.fluxnova.bpm.engine.cdi.impl.event
 org.finos.fluxnova.bpm.engine.cdi.impl.util
 org.finos.fluxnova.bpm.engine.cdi.jsf
+org.finos.fluxnova.bpm.engine.configuration
 org.finos.fluxnova.bpm.engine.context
 org.finos.fluxnova.bpm.engine.delegate
 org.finos.fluxnova.bpm.engine.dmn
@@ -285,6 +286,7 @@ org.finos.fluxnova.bpm.engine.rest.dto
 org.finos.fluxnova.bpm.engine.rest.dto.authorization
 org.finos.fluxnova.bpm.engine.rest.dto.batch
 org.finos.fluxnova.bpm.engine.rest.dto.condition
+org.finos.fluxnova.bpm.engine.rest.dto.configuration
 org.finos.fluxnova.bpm.engine.rest.dto.converter
 org.finos.fluxnova.bpm.engine.rest.dto.dmn
 org.finos.fluxnova.bpm.engine.rest.dto.externaltask
