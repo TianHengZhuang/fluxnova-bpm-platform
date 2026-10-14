@@ -585,6 +585,19 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAssignmentId(java.lang.String,java.lang.String)" class="member-name-link">getAssignmentId</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;expression,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;prefix)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>protected static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getAttributeWithNamespace(org.finos.fluxnova.bpm.engine.impl.util.xml.Element,java.lang.String)" class="member-name-link">getAttributeWithNamespace</a><wbr>(<a href="../../util/xml/Element.html" title="class in org.finos.fluxnova.bpm.engine.impl.util.xml">Element</a>&nbsp;element,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;attributeName)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Gets an attribute value from an element, checking both fluxnova: and camunda: namespaces.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>protected static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getAttributeWithNamespace(org.finos.fluxnova.bpm.engine.impl.util.xml.Element,java.lang.String,java.lang.String)" class="member-name-link">getAttributeWithNamespace</a><wbr>(<a href="../../util/xml/Element.html" title="class in org.finos.fluxnova.bpm.engine.impl.util.xml">Element</a>&nbsp;element,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;attributeName,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;defaultValue)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Gets an attribute value from an element, checking both fluxnova: and camunda: namespaces.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getIdForMiBody(java.lang.String)" class="member-name-link">getIdForMiBody</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;id)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
@@ -4198,6 +4211,41 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="isAsyncAfter(org.finos.fluxnova.bpm.engine.impl.util.xml.Element)">
 <h3>isAsyncAfter</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isAsyncAfter</span><wbr><span class="parameters">(<a href="../../util/xml/Element.html" title="class in org.finos.fluxnova.bpm.engine.impl.util.xml">Element</a>&nbsp;element)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getAttributeWithNamespace(org.finos.fluxnova.bpm.engine.impl.util.xml.Element,java.lang.String)">
+<h3>getAttributeWithNamespace</h3>
+<div class="member-signature"><span class="modifiers">protected static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getAttributeWithNamespace</span><wbr><span class="parameters">(<a href="../../util/xml/Element.html" title="class in org.finos.fluxnova.bpm.engine.impl.util.xml">Element</a>&nbsp;element,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;attributeName)</span></div>
+<div class="block">Gets an attribute value from an element, checking both fluxnova: and camunda: namespaces.
+ Checks the fluxnova: namespace first, then falls back to camunda: for backward compatibility.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>element</code> - the element to get the attribute from</dd>
+<dd><code>attributeName</code> - the name of the attribute (without namespace prefix)</dd>
+<dt>Returns:</dt>
+<dd>the attribute value, or null if not found in either namespace</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getAttributeWithNamespace(org.finos.fluxnova.bpm.engine.impl.util.xml.Element,java.lang.String,java.lang.String)">
+<h3>getAttributeWithNamespace</h3>
+<div class="member-signature"><span class="modifiers">protected static</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">getAttributeWithNamespace</span><wbr><span class="parameters">(<a href="../../util/xml/Element.html" title="class in org.finos.fluxnova.bpm.engine.impl.util.xml">Element</a>&nbsp;element,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;attributeName,
+ <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;defaultValue)</span></div>
+<div class="block">Gets an attribute value from an element, checking both fluxnova: and camunda: namespaces.
+ Checks the fluxnova: namespace first, then falls back to camunda: for backward compatibility.
+ If no value is found in either namespace, returns the default value.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>element</code> - the element to get the attribute from</dd>
+<dd><code>attributeName</code> - the name of the attribute (without namespace prefix)</dd>
+<dd><code>defaultValue</code> - the default value to return if attribute is not found</dd>
+<dt>Returns:</dt>
+<dd>the attribute value, or defaultValue if not found in either namespace</dd>
+</dl>
 </section>
 </li>
 <li>
