@@ -2295,6 +2295,9 @@ public class BpmnParse extends Parse {
         parseShellServiceTask(activity, serviceTaskElement, parseFieldDeclarations(serviceTaskElement));
       } else if (type.equalsIgnoreCase("external")) {
         parseExternalServiceTask(activity, serviceTaskElement, camundaPropertiesElement);
+      } else if (type.equalsIgnoreCase("a2a-remote")) {
+        // No-op: behaviour intentionally left null.
+        // A custom ProcessEnginePlugin parse listener will set the ActivityBehavior.
       } else {
         addError("Invalid usage of type attribute on " + elementName + ": '" + type + "'", serviceTaskElement);
       }
